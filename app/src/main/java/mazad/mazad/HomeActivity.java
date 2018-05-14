@@ -275,7 +275,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_call_us) {
             startActivity(new Intent(HomeActivity.this, CallUsActivity.class).putExtra("user", mUserModel));
         } else if (id == R.id.nav_terms) {
-            startActivity(new Intent(HomeActivity.this, TermsAndConditionsActivity.class));
+            if (mUserModel == null) {
+                startActivity(new Intent(HomeActivity.this, TermsAndConditionsActivity.class));
+            } else {
+                startActivity(new Intent(HomeActivity.this, TermsAndConditionsActivity.class).putExtra("user",mUserModel));
+            }
         } else if (id == R.id.nav_settings) {
             home = false;
             mToolbar.setVisibility(View.VISIBLE);

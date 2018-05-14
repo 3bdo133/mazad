@@ -6,12 +6,14 @@ public class CommentModel {
     private String user;
     private String report;
     private String date;
+    private String id;
 
-    public CommentModel(String name, String user, String report, String date) {
+    public CommentModel(String name, String user, String report, String date, String id) {
         this.name = name;
         this.user = user;
         this.report = report;
         this.date = date;
+        this.id = id;
     }
 
     public String getName() {
@@ -28,5 +30,10 @@ public class CommentModel {
 
     public String getDate() {
         return date;
+    }
+
+
+    public String getId() {
+        return id;
     }
 }

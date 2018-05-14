@@ -14,8 +14,16 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.android.volley.VolleyError;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import mazad.mazad.models.UserModel;
+import mazad.mazad.utils.Connector;
+import mazad.mazad.utils.Helper;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -29,6 +37,14 @@ public class TermsAndConditionsActivity extends AppCompatActivity {
     EditText mProductPrice;
     @BindView(R.id.price_after)
     EditText mPriceAfter;
+
+    Connector mConnector;
+
+    UserModel mUserModel = null;
+
+    Map<String,String> mMap;
+
+    private static final String TAG = "TermsAndConditionsActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +97,31 @@ public class TermsAndConditionsActivity extends AppCompatActivity {
             }
         });
 
+        mMap = new HashMap<>();
+        mConnector = new Connector(this, new Connector.LoadCallback() {
+            @Override
+            public void onComplete(String tag, String response) {
+                if (Connector.checkStatus(response)){
+                    Helper.showSnackBarMessage("تم الارسال بنجاح",TermsAndConditionsActivity.this);
+                } else {
+                    Helper.showSnackBarMessage("خطأ من فضلك اعد المحاوله",TermsAndConditionsActivity.this);
+                }
+
+            }
+        }, new Connector.ErrorCallback() {
+            @Override
+            public void onError(VolleyError error) {
+                Helper.showSnackBarMessage("خطأ من فضلك اعد المحاوله",TermsAndConditionsActivity.this);
+            }
+        });
+
+
+        if (getIntent().hasExtra("user") && getIntent().getSerializableExtra("user") != null){
+            mUserModel = (UserModel) getIntent().getSerializableExtra("user");
+            mMap.put("email",mUserModel.getEmail());
+            Helper.writeToLog(mUserModel.getEmail());
+        }
+
     }
 
 
@@ -89,4 +130,14 @@ public class TermsAndConditionsActivity extends AppCompatActivity {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
+    public void sendClicked(View view) {
+        if (mUserModel != null){
+            mConnector.setMap(mMap);
+            mConnector.getRequest(TAG,Connector.createBankAccountUrl());
+        } else {
+            Helper.showSnackBarMessage("من فضلك قم بتسجيل الدخول",TermsAndConditionsActivity.this);
+        }
+
+
+    }
 }

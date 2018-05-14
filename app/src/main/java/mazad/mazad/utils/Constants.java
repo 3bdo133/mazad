@@ -28,8 +28,9 @@ public class Constants {
     public static final String EDIT_PROFILE = "edit";
     public static final String REMOVE_PRODUCT = "delete_product";
     public static final String DELETE_CHAT = "delete_chat";
-    public static final String REPORT_SPAM = "spam";
+    public static final String REPORT_SPAM = "report_spam";
     public static final String FORGET_PASSWORD = "forget_password";
     public static final String CHANGE_PASSWORD = "change_password";
+    public static final String BANK_ACCOUNT = "bank_account";
 
 }

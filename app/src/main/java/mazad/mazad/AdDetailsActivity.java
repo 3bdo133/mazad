@@ -166,6 +166,7 @@ public class AdDetailsActivity extends AppCompatActivity {
             @Override
             public void onComplete(String tag, String response) {
                 if (Connector.checkStatus(response)) {
+                    Helper.showSnackBarMessage("تم بنجاح",AdDetailsActivity.this);
                     mParentLayout.setVisibility(View.VISIBLE);
                     mParentToolbar.setVisibility(View.VISIBLE);
                     mProgressBar.setVisibility(View.INVISIBLE);
@@ -198,9 +199,8 @@ public class AdDetailsActivity extends AppCompatActivity {
             @Override
             public void setOnItemClick(int position) {
                 if (mUserModel != null) {
-                    mMapReportSpam.put("sender_id", mUserModel.getId());
-                    mMapReportSpam.put("user_id", replyModels.get(position).getUser());
-                    mMapReportSpam.put("product_id", mProductModel.getId());
+                    mMapReportSpam.put("user_id", mUserModel.getId());
+                    mMapReportSpam.put("comment_id", replyModels.get(position).getId());
                     mConnectorReportSpam.setMap(mMapReportSpam);
                     mParentLayout.setVisibility(View.INVISIBLE);
                     mParentToolbar.setVisibility(View.INVISIBLE);

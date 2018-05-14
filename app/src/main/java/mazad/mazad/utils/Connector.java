@@ -301,6 +301,13 @@ public class Connector {
         return builder.toString();
     }
 
+    public static String createBankAccountUrl() {
+        Uri.Builder builder = Uri.parse(Constants.MAZAD_API_URL).buildUpon()
+                .appendPath(Constants.BANK_ACCOUNT);
+
+        return builder.toString();
+    }
+
 
     public static boolean checkStatus(String response) {
         boolean status = false;
@@ -578,7 +585,8 @@ public class Connector {
                         String user = comment.getString("user");
                         String report = comment.getString("report");
                         String date = comment.getString("date");
-                        commentsArrayList.add(new CommentModel(name, user, report, date));
+                        String id = comment.getString("id");
+                        commentsArrayList.add(new CommentModel(name, user, report, date,id));
                     }
                 }
                 JSONObject product = jsonObject.getJSONObject("product");

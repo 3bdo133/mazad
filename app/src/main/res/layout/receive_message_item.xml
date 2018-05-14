@@ -1,36 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layoutDirection="rtl"
-    android:layout_marginTop="5dp"
-    android:padding="5dp"
-    android:background="@drawable/shape_bg_incoming_bubble"
-    android:layout_height="wrap_content"
-    tools:ignore="UnusedAttribute">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-
-    <TextView
-        android:layout_gravity="left"
-        android:foreground="?attr/selectableItemBackground"
-        android:paddingBottom="10dp"
-        android:textSize="11sp"
-        tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
-        fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
-        android:id="@+id/message"
-        android:layout_marginLeft="20dp"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"
-        android:text="السلام عليكم ورحمة الله وبركاته اهلا وسهلا"/>
+        android:layout_gravity="left"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/shape_bg_incoming_bubble"
+        android:layoutDirection="rtl"
+        android:padding="5dp"
+        tools:ignore="UnusedAttribute">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_below="@id/message"
-        android:text="15/9/1996"
-        android:id="@+id/date"
-        android:layout_marginLeft="20dp"
-        android:layout_height="wrap_content" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/message"
+            fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:paddingBottom="10dp"
+            android:gravity="right"
+            android:layout_gravity="right"
+            android:text="السلام عليكم ورحمة الله وبركاته اهلا وسهلا"
+            android:textColor="@android:color/white"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/message"
+            android:layout_marginLeft="20dp"
+            android:text="15/9/1996" />
+
+    </LinearLayout>
+
+</FrameLayout>
