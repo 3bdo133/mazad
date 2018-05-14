@@ -1,29 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layoutDirection="rtl"
+    android:layout_marginTop="5dp"
+    android:padding="5dp"
+    android:background="@drawable/shape_bg_incoming_bubble"
     android:layout_height="wrap_content"
     tools:ignore="UnusedAttribute">
 
 
     <TextView
         android:layout_gravity="left"
-        android:paddingLeft="30dp"
-        android:paddingTop="10dp"
         android:foreground="?attr/selectableItemBackground"
-        android:layout_marginTop="5dp"
         android:paddingBottom="10dp"
-        android:paddingRight="5dp"
         android:textSize="11sp"
         tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
         fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
         android:id="@+id/message"
+        android:layout_marginLeft="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textColor="@android:color/white"
-        android:background="@drawable/shape_bg_incoming_bubble"
         android:text="السلام عليكم ورحمة الله وبركاته اهلا وسهلا"/>
 
-</FrameLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_below="@id/message"
+        android:text="15/9/1996"
+        android:id="@+id/date"
+        android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

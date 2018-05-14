@@ -82,12 +82,12 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mEmail = mEmailEditText.getText().toString();
                 mPassword = mPasswordEditText.getText().toString();
-                if (!Helper.validateEmail(mEmail) && !Helper.validateFields(mPassword))
+                if (!Helper.validateFields(mEmail) && !Helper.validateFields(mPassword))
                     Helper.showSnackBarMessage("من فضلك. ادخل بيانات صحيحة",LoginActivity.this);
                 else if (!Helper.validateFields(mPassword))
                     Helper.showSnackBarMessage("من فضلك. ادخل كلمة المرور",LoginActivity.this);
-                else if (!Helper.validateEmail(mEmail))
-                    Helper.showSnackBarMessage("البريد الالكتروني يجب ان يكون صحيح",LoginActivity.this);
+                else if (!Helper.validateFields(mEmail))
+                    Helper.showSnackBarMessage("ادخل اسم المستخدم",LoginActivity.this);
                 else {
                     String token = Helper.getTokenFromSharedPreferences(LoginActivity.this);
                     mMap.put("username",mEmail);

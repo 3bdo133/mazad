@@ -106,7 +106,7 @@ public class FavoritesActivity extends AppCompatActivity {
         final PresentedItemAdapter adapter = new PresentedItemAdapter(FavoritesActivity.this, mPresentedItemModels, new PresentedItemAdapter.OnItemClick() {
             @Override
             public void setOnItemClick(int position) {
-                startActivity(new Intent(FavoritesActivity.this,AdDetailsActivity.class).putExtra("product",mPresentedItemModels.get(position)));
+                startActivity(new Intent(FavoritesActivity.this,AdDetailsActivity.class).putExtra("product",mPresentedItemModels.get(position)).putExtra("user",mUserModel));
             }
         });
 
@@ -240,6 +240,18 @@ public class FavoritesActivity extends AppCompatActivity {
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mItems.setVisibility(View.INVISIBLE);
+        mProgressBar.setVisibility(View.VISIBLE);
+        if (mUserModel != null) {
+            mMap.put("user_id", mUserModel.getId());
+            mConnector.setMap(mMap);
+        }
+        mConnector.getRequest(TAG, Connector.createMyFavoriteUrl());
     }
 
     @Override

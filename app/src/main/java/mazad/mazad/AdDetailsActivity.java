@@ -337,9 +337,13 @@ public class AdDetailsActivity extends AppCompatActivity {
             public void onComplete(String tag, String response) {
                 if (Connector.checkStatus(response)) {
                     if (!mProductModel.getFavorite()) {
+                        mProductModel.setFavorite(true);
+                        mFavorite.setImageResource(R.drawable.im_heart);
                         Helper.showSnackBarMessage("تم الاضافه الي المفضلة بنجاح", AdDetailsActivity.this);
                     } else {
+                        mFavorite.setImageResource(R.mipmap.ic_love);
                         Helper.showSnackBarMessage("تم الحذف من المفضلة بنجاح", AdDetailsActivity.this);
+                        mProductModel.setFavorite(false);
                     }
                     mProgressBar.setVisibility(View.INVISIBLE);
                     mNestedScrollView.fullScroll(NestedScrollView.FOCUS_UP);
@@ -456,11 +460,6 @@ public class AdDetailsActivity extends AppCompatActivity {
             mMapLove.put("product_id", mProductModel.getId());
             mConnectorAddLove.setMap(mMapLove);
             mConnectorAddLove.getRequest(TAG, Connector.createAddToFavoriteUrl());
-            if (mProductModel.getFavorite()) {
-                mFavorite.setImageResource(R.mipmap.ic_love);
-            } else {
-                mFavorite.setImageResource(R.drawable.im_heart);
-            }
 
         } else {
             Helper.showSnackBarMessage("من فضلك قم بتسجيل الدخول", AdDetailsActivity.this);

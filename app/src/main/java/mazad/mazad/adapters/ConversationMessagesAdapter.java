@@ -66,6 +66,7 @@ public class ConversationMessagesAdapter extends RecyclerView.Adapter<Conversati
     @Override
     public void onBindViewHolder(@NonNull final ConversationMessageHolder holder, int position) {
         holder.message.setText(items.get(position).getMessage());
+        holder.date.setText(items.get(position).getDate());
     }
 
 
@@ -79,6 +80,8 @@ public class ConversationMessagesAdapter extends RecyclerView.Adapter<Conversati
 
         @BindView(R.id.message)
         TextView message;
+        @BindView(R.id.date)
+        TextView date;
 
         public ConversationMessageHolder(View itemView) {
             super(itemView);

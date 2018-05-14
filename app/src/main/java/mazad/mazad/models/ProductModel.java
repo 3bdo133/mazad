@@ -80,4 +80,9 @@ public class ProductModel {
     public ArrayList<CommentModel> getComments() {
         return comments;
     }
+
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
 }

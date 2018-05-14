@@ -95,6 +95,11 @@ public class MyAdsActivity extends AppCompatActivity {
         });
 
 
+        if (getIntent().hasExtra("user")){
+            mUserModel = (UserModel) getIntent().getSerializableExtra("user");
+            Helper.writeToLog(mUserModel.getId());
+        }
+
         mPresentedItemModels = new ArrayList<>();
 
         final PresentedItemAdapter adapter = new PresentedItemAdapter(this, mPresentedItemModels, new PresentedItemAdapter.OnItemClick() {
