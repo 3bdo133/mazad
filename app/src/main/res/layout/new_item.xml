@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:foreground="?attr/selectableItemBackground"
+    android:layoutDirection="rtl"
+    tools:ignore="UnusedAttribute">
+
+
+
+
+    <ImageView
+        android:id="@+id/new_image"
+        android:layout_width="110dp"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="10dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/content_description"
+        android:src="@drawable/im_test"
+        tools:ignore="RtlHardcoded" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@id/new_image"
+        android:orientation="vertical"
+        tools:ignore="RtlHardcoded">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            tools:ignore="UseCompoundDrawables">
+
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/rounded_text_view"
+                android:textColor="@android:color/white"
+                android:layout_gravity="center"
+                android:gravity="center"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:paddingBottom="5dp"
+                android:textAlignment="center"
+                android:id="@+id/notification"
+                tools:text="1"/>
+
+            <ImageView
+                android:id="@+id/news_logo"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="10dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/content_description"
+                android:src="@drawable/im_news_item_logo"
+                tools:ignore="RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_gravity="center"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                tools:text="قبل 1 ساعة" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+            fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+            android:id="@+id/description"
+            android:layout_marginRight="25dp"
+            tools:text="رائعة هوندا الجديدة crv 2019...." />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="35dp"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="11sp"
+            tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+            fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+            android:id="@+id/type"
+            android:textStyle="bold"
+            tools:text="سيارات." />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="#9E9E9E"/>
+
+
+</RelativeLayout>

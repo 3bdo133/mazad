@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:layoutDirection="rtl"
+    tools:context=".NewDetailsActivity"
+
+    tools:ignore="UnusedAttribute,HardcodedText">
+
+
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                tools:ignore="RtlHardcoded,MissingPrefix"
+                tools:text="رائعة هوندا الجديدة crv 2019...."
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                 />
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_gravity="right"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/content_description"
+                android:src="@drawable/im_back_icon"
+                tools:ignore="RtlHardcoded" />
+
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/likes_parent"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="15dp"
+            android:id="@+id/like"
+            android:onClick="react"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:contentDescription="@string/content_description"
+                android:layout_height="20dp"
+                android:src="@drawable/im_like"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15"
+                android:textSize="11sp"
+                android:id="@+id/like_text"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:layout_marginRight="5dp"
+                android:textColor="@android:color/black"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="15dp"
+            android:id="@+id/dis_like"
+            android:onClick="react"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:contentDescription="@string/content_description"
+                android:layout_height="20dp"
+                android:src="@drawable/im_dislike"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15"
+                android:textSize="11sp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:id="@+id/dislike"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:layout_marginRight="5dp"
+                android:textColor="@android:color/black" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:layout_above="@id/likes_parent"
+        android:layout_below="@id/app_bar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/parent_layout_new"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:id="@+id/description"
+                android:layout_marginRight="25dp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:text="رائعة هوندا الجديدة crv 2019...." />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_rectangle"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/content_description"
+                        android:src="@drawable/im_test" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="10dp"
+                        android:orientation="vertical"
+                        tools:ignore="RtlHardcoded">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#FFEB3B"
+                            android:id="@+id/time"
+                            android:textSize="11sp"
+                            tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                            fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                            android:text="تم نشره في 15/10/2016" />
+
+                        <TextView
+                            android:textSize="11sp"
+                            android:layout_width="wrap_content"
+                            tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                            fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                            android:layout_height="wrap_content"
+                            android:textColor="@android:color/white"
+                            android:text="ArabGT.com" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:id="@+id/body"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                    fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                    android:text="نشرت شركة هوندا اليابانيه الصور الرسميه الاولي للجيل الخامس والجديد كليا من سيارتها الكروس اوفر CR-V.\nشاهد صور وتفاصيل الخبر : https://goo.gl/yQdEcX" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginRight="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/content_description"
+                    android:layout_marginTop="20dp"
+                    android:adjustViewBounds="true"
+                    android:id="@+id/image"
+                    android:src="@drawable/im_test" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/progress_indicator"
+        android:visibility="invisible"/>
+
+</RelativeLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/darker_gray"
+    android:orientation="vertical"
+    android:clickable="true"
+    android:paddingTop="25dp"
+    tools:ignore="UnusedAttribute"
+    android:focusable="true"
+    android:layoutDirection="rtl">
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/tools"
+
+        tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+        fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"        android:textSize="12sp"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:text="@string/tools"
+        android:textColor="@android:color/white" />
+
+
+
+</FrameLayout>

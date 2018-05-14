@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layoutDirection="rtl"
+    android:layout_height="110dp"
+    android:foreground="?attr/selectableItemBackground"
+    tools:ignore="UnusedAttribute">
+
+
+
+    <ImageView
+        android:layout_width="30dp"
+        android:id="@+id/favorite"
+        android:layout_height="20dp"
+        android:layout_margin="20dp"
+        android:src="@drawable/im_heart"
+        android:contentDescription="@string/content_description"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:textColor="#45BBD9"
+        tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+        fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+        android:textStyle="bold"
+        android:textSize="11sp"
+        android:layout_toRightOf="@id/location"
+        android:id="@+id/person_name"
+        android:gravity="right"
+        android:drawablePadding="5dp"
+        android:drawableRight="@drawable/ic_person"
+        android:padding="10dp"
+        tools:text="عبدالله654548" />
+
+
+    <ImageView
+        android:layout_width="110dp"
+        android:layout_height="80dp"
+        android:id="@+id/product_image"
+        android:contentDescription="@string/content_description"
+        android:layout_margin="10dp"
+        android:src="@drawable/im_test"
+        android:adjustViewBounds="true"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        tools:ignore="RtlHardcoded" />
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/product_name"
+        android:textSize="13sp"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:ellipsize="end"
+        android:maxLines="1"
+        tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+        fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+        android:layout_toLeftOf="@id/favorite"
+        android:layout_toRightOf="@id/product_image"
+        android:textColor="@android:color/black"
+        tools:text="راف فور للبيع...."
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/product_image"
+        android:textColor="#45BBD9"
+        android:id="@+id/location"
+        android:textStyle="bold"
+        android:gravity="left"
+        tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+        fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+        android:drawablePadding="5dp"
+        android:drawableRight="@drawable/ic_location"
+        android:padding="10dp"
+        android:textSize="11sp"
+        android:layout_below="@id/product_name"
+        tools:text="جده" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="#9E9E9E"/>
+
+
+</RelativeLayout>

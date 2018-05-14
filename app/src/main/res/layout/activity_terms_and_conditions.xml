@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:layoutDirection="rtl"
+    tools:context=".TermsAndConditionsActivity"
+    tools:ignore="UnusedAttribute">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="عمولة وانظمة مزاد"
+                android:textColor="#45BBD9"
+                android:textSize="12sp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_gravity="right"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/content_description"
+                android:src="@drawable/im_back_icon"
+                tools:ignore="RtlHardcoded" />
+
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/app_bar"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="11sp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:text="قال تعالي &quot; يآيها الذين ءامنوا اوفوا بالعقود &quot; " />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:text="-عند استخدامك للتطبيع فإنك تلتزم بالآتي :-"
+                android:textColor="@android:color/holo_blue_light"
+                android:textSize="11sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                    fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                    android:layout_marginRight="20dp"
+                    android:text="1-الإلتزام بدفع عمولة البرنامج"
+                    android:textColor="#1A237E" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                    fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="5dp"
+                    android:textColor="@android:color/holo_red_light"
+                    android:text="0.5%"/>
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                    fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                    android:layout_marginRight="5dp"
+                    android:text="من قيمة السلعه المباعه"
+                    android:textColor="#1A237E" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:layout_marginRight="20dp"
+                android:text="2-الإلتزام بعدم بخس اي سلعه"
+                android:textColor="#1A237E" />
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:layout_marginRight="20dp"
+                android:text="3-الإلتزام بعدم اضافة اي اعلان او رد لايتعلق بالبيع"
+                android:textColor="#1A237E" />
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:layout_marginRight="20dp"
+                android:text="4-الإلتزام بعد الاعلان عن اي سلعه ممنوعه"
+                android:textColor="#1A237E" />
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:layout_marginRight="20dp"
+                android:text="5-الإلتزام بالإعلان لسلعتك المراد بيعها او تأجيرها"
+                android:textColor="#1A237E" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:layout_marginTop="20dp"
+                android:background="#9E9E9E"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:layout_marginRight="20dp"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="12sp"
+                android:text="الأنظمة الممنوعات:" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:layout_marginRight="20dp"
+                android:text="1-جميع ماحرم الله ومالايجوز بيع"
+                android:textColor="#1A237E" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:layout_marginRight="20dp"
+                android:text="2-جميع الاعلانات التي لاتتعلق بالبيع او الايجار"
+                android:textColor="#1A237E" />
+
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:layout_marginRight="20dp"
+                android:text="3-جميع السلع الممنوعه حسب قوانين المملكه العربيه السعوديه وكذلك طرق التعامل بين البائع والمشتري والبرنامج من جهة"
+                android:textColor="#1A237E" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:layout_marginRight="20dp"
+                android:text="4-لايتحمل البرنامج اي مسئولية في عملية البيع والشراء وكذلك مشاركة المعلومات الخاصه لأي طرف وعليه يلزم جميع الاطراف تحمل كامل المسئوليه"
+                android:textColor="#1A237E" />
+
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:layout_marginRight="20dp"
+                android:text="5-يحق لادارة البرنامج حذف عضوية العميل او حظرها في حال المخالفه"
+                android:textColor="#1A237E" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:layout_marginRight="20dp"
+                android:text="6-المنتجات الممنوعه سواء كانت محليه او مستورده او جنسيه او غير ذلك"
+                android:textColor="#1A237E" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:layout_marginRight="20dp"
+                android:text="7-السب والشتم بمبرر او بدون مبرر"
+                android:textColor="#1A237E" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:layout_marginRight="20dp"
+                android:text="8-عدم الجدية وعدم الرغبة في الشراء"
+                android:textColor="#1A237E" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:layout_marginRight="20dp"
+                android:text="9-التنديد والقدح بأي كان سواء كان هذا بأشخاص او مؤسسات او شركات ومن لديه دعوه فعليه الاتجاه الي الجهات ذات العلاقه"
+                android:textColor="#1A237E" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:layout_marginRight="20dp"
+                android:text="10-يحق لإدارة البرنامج التعديل متي شاءت علي البنود السابقه وسيتم اشعار العملاء بذلك في حينه"
+                android:textColor="#1A237E" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="#9E9E9E"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="20dp"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="11sp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:text="العمولة :" />
+
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:layout_marginRight="20dp"
+                android:text="حسب ماذكر في عقد استخدام البرنامج فإن عمولة البرنامج تعتبر عقدا ملزما علي المعلن يتم بموجبه دفع دلالة (عمولة) البرنامج وتساوي 0.5% نصف في المائه من قيمة السلعه المباعه"
+                android:textColor="#1A237E" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="20dp"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="13sp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:text="حساب قيمة العموله :" />
+
+            <EditText
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:id="@+id/product_price"
+                android:hint="قيمة السلعة = 1000"
+                android:textSize="12sp"
+                android:textColor="@android:color/black"
+                android:background="@drawable/bg_edit_text"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:inputType="number"
+                android:textAlignment="center"/>
+
+            <EditText
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:hint="الدلالة = 5"
+                android:id="@+id/price_after"
+                android:enabled="false"
+                android:textSize="12sp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:textColor="@android:color/black"
+                android:background="@drawable/bg_edit_text"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:inputType="number"
+                android:textAlignment="center"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="20dp"
+                android:textColor="@android:color/holo_green_light"
+                android:textSize="12sp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:textStyle="bold"
+                android:text="* دفع الدلالة :" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:layout_marginRight="20dp"
+                android:text="يتم عن طريق التحويل البنكي للعموله وبالضغط علي الزر بالاسفل يتم ارسال ارقام الحسابات لكم عبر البريد الالكتروني المسجل لدينا"
+                android:textColor="#1A237E" />
+
+            <Button
+                android:layout_width="250dp"
+                android:layout_height="44dp"
+                android:layout_gravity="center"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:layout_marginTop="30dp"
+                android:id="@+id/login_button"
+                android:textSize="12sp"
+                android:background="@drawable/bg_button_background"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="ارسال"
+                android:layout_marginBottom="10dp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

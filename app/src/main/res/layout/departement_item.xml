@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="center"
+    android:layoutDirection="rtl"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_button"
+        android:elevation="2dp"
+        android:layout_marginBottom="10dp"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:gravity="center"
+        android:padding="13dp"
+        android:orientation="horizontal"
+        android:paddingRight="20dp">
+
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="0.1"
+            android:id="@+id/image"
+            android:src="@drawable/ic_animal"
+            android:layout_gravity="center"
+            android:layout_height="20dp" />
+
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.8"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="اﻹشعارات"
+            tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+            fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+            android:id="@+id/name"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:textColor="#45BBD9"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

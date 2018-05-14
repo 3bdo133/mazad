@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:layoutDirection="rtl"
+    tools:context=".SettingsFragment"
+    tools:ignore="UnusedAttribute">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content">
+
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:layoutDirection="rtl"
+            android:orientation="vertical"
+            tools:context=".SettingsFragment"
+            tools:ignore="UnusedAttribute">
+
+
+            <Button
+                android:id="@+id/share_app"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_button"
+                android:drawableRight="@drawable/ic_share"
+                android:elevation="5dp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:paddingRight="20dp"
+                android:text="مشاركة التطبيق"
+                android:textAlignment="center"
+                android:textColor="#45BBD9"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_button"
+                android:drawableRight="@drawable/ic_star"
+                android:elevation="5dp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:paddingRight="20dp"
+                android:text="تقييم علي Play Store"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="#45BBD9"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_button"
+                android:elevation="2dp"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:padding="4.5dp"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawableRight="@drawable/ic_notifications"
+                    android:gravity="center"
+                    tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                    fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                    android:paddingRight="20dp"
+                    android:text="اﻹشعارات"
+                    android:textAlignment="center"
+                    android:textColor="#45BBD9"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <Switch
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <!--<Button
+                    android:layout_width="150dp"
+                    android:layout_height="45dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/bg_btn_settings"
+                    android:elevation="5dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:text="محو سجل البحث"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:id="@+id/remove_search"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />-->
+
+                <Button
+                    android:id="@+id/remove_favorite"
+                    android:layout_width="150dp"
+                    android:layout_height="45dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/bg_btn_settings"
+                    android:elevation="5dp"
+                    tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                    fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:text="محو المفضلة"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progress_indicator"
+            android:visibility="invisible"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+</ScrollView>

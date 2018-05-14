@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "223391944464",
+    "firebase_url": "https://mazad-ebf58.firebaseio.com",
+    "project_id": "mazad-ebf58",
+    "storage_bucket": "mazad-ebf58.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:223391944464:android:0451109f08292411",
+        "android_client_info": {
+          "package_name": "mazad.mazad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "223391944464-knakbk0rtecmmelunmnqiaufhedfjret.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBf75cT-iLogfQqhmpLQiTVF8RotcV0Hhc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

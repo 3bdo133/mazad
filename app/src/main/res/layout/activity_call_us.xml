@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:layoutDirection="rtl"
+    tools:ignore="UnusedAttribute"
+    android:id="@+id/parent_layout"
+    tools:context=".CallUsActivity">
+
+
+
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="تواصل معنا"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                tools:ignore="RtlHardcoded,MissingPrefix"
+                android:textColor="#45BBD9"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:contentDescription="@string/content_description"
+                android:adjustViewBounds="true"
+                android:layout_gravity="right"
+                android:id="@+id/back"
+                tools:ignore="RtlHardcoded"
+                android:src="@drawable/im_back_icon"/>
+
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@id/app_bar"
+        android:fillViewport="true"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:background="@drawable/bg_call_us_header"
+                android:layout_height="50dp"
+                android:gravity="center"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                tools:ignore="RtlHardcoded,MissingPrefix"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="11sp"
+                android:text="إرسل إلينا"/>
+
+
+            <EditText
+                android:layout_width="240dp"
+                android:layout_height="65dp"
+                android:id="@+id/user_name"
+                android:inputType="text"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                tools:ignore="RtlHardcoded,MissingPrefix"
+                android:textSize="12sp"
+                android:paddingRight="20dp"
+                android:hint="اسم المستخدم :"
+                android:layout_marginTop="30dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:hint="نص الرسالة :"
+                android:gravity="top"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                tools:ignore="RtlHardcoded,MissingPrefix"
+                android:textSize="12dp"
+                android:id="@+id/message_text"
+                android:padding="10dp"
+                android:layout_margin="20dp"
+                android:textColor="@android:color/black"
+                android:background="@drawable/bg_edit_text"
+                android:layout_marginTop="25dp"
+                android:inputType="text"/>
+
+            <Button
+                android:layout_width="250dp"
+                android:layout_height="44dp"
+                android:textSize="11sp"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                tools:ignore="RtlHardcoded,MissingPrefix"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:id="@+id/send_button"
+                android:background="@drawable/bg_btn_call_us"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="إرسال"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:background="@drawable/bg_title_call_us"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                tools:ignore="RtlHardcoded,MissingPrefix"
+                android:textSize="11sp"
+                android:layout_marginTop="20dp"
+                android:text="اﻹدارة"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                tools:ignore="RtlHardcoded,MissingPrefix"
+                android:textSize="11sp"
+                android:textColor="#1A237E"
+                android:text="التواصل مع فريق الدعم والخدمات"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                tools:ignore="RtlHardcoded,MissingPrefix"
+                android:textSize="11sp"
+                android:layout_marginBottom="20dp"
+                android:textColor="@android:color/holo_red_dark"
+                android:text="majed37g@gmail.com"/>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress_indicator"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"/>
+
+</RelativeLayout>

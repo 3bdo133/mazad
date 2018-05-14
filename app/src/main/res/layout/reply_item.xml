@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layoutDirection="rtl"
+    android:layout_height="wrap_content"
+    tools:ignore="UnusedAttribute">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="#EEEEEE"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:id="@+id/number"
+                android:drawableRight="@drawable/ic_person"
+                android:drawableTint="#9E9E9E"
+                android:paddingLeft="10dp"
+                tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                android:gravity="center|right"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textSize="11sp"
+                android:paddingRight="20dp"
+                android:textColor="@android:color/black"
+                android:text="رد اعلان رقم 45432"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:id="@+id/spam"
+                android:src="@drawable/ic_spam"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="11sp"
+            tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
+            fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+            android:id="@+id/reply"
+            android:paddingBottom="10dp"
+            android:textColor="@android:color/black"
+            android:text="كم حدك ياغالي وهل السياره خاليه من السمكرة"
+            android:layout_height="0dp" />
+        
+    </LinearLayout>
+
+</RelativeLayout>

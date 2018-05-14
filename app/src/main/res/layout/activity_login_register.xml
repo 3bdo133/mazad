@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_login_register_activity"
+    android:layoutDirection="rtl"
+    tools:context=".LoginRegisterActivity"
+    tools:ignore="UnusedAttribute">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        tools:ignore="UselessParent">
+
+        <Button
+            android:layout_width="0dp"
+            android:id="@+id/login_button"
+            style="?attr/buttonBarButtonStyle"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/login"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+            tools:ignore="MissingPrefix"
+            android:textAlignment="center"
+            android:foreground="?attr/selectableItemBackground"
+            android:textColor="@android:color/white"
+            android:background="@drawable/bg_button_right" />
+
+        <Button
+            android:id="@+id/register_button"
+            android:layout_width="0dp"
+            style="?attr/buttonBarButtonStyle"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="12sp"
+            fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+            tools:ignore="MissingPrefix"
+            android:foreground="?attr/selectableItemBackground"
+            android:text="@string/register"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:background="@drawable/bg_button_left" />
+
+    </LinearLayout>
+</RelativeLayout>

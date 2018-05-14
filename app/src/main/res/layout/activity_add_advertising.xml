@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:layoutDirection="rtl"
+    tools:ignore="UnusedAttribute"
+    android:id="@+id/parent_layout"
+    tools:context=".AddAdvertisingActivity">
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/progress_indicator"
+        android:visibility="invisible"/>
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                tools:ignore="RtlHardcoded,MissingPrefix"
+                android:text="اضافة اعلان"
+                android:textColor="#45BBD9"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:contentDescription="@string/content_description"
+                android:adjustViewBounds="true"
+                android:layout_gravity="right"
+                android:id="@+id/back"
+                tools:ignore="RtlHardcoded"
+                android:src="@drawable/im_back_icon"/>
+
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:layout_below="@id/app_bar"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:id="@+id/parent_layout_ad"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="عمولة المزاد"
+                android:textStyle="bold"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                tools:ignore="RtlHardcoded,MissingPrefix"
+                android:textColor="#45BBD9"
+                android:textSize="12sp"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#45BBD9"
+                android:textStyle="bold"
+                android:id="@+id/terms"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                tools:ignore="RtlHardcoded,MissingPrefix"
+                android:textSize="10sp"
+                android:layout_marginTop="15dp"
+                android:text="اتعهد امام الله بدفع عمولة التطبيق نصف في المائه 0.5%"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#9E9E9E"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="القسم"
+                android:textSize="12sp"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                tools:ignore="RtlHardcoded,MissingPrefix"
+                android:id="@+id/department"
+                android:textColor="@android:color/black"
+                android:inputType="text"
+                android:textAlignment="center"/>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="القسم الفرعي"
+                android:spinnerMode="dialog"
+                android:gravity="center"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                tools:ignore="RtlHardcoded,MissingPrefix"
+                android:id="@+id/sub_category_spinner"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="10dp"
+                android:inputType="text"
+                android:textAlignment="center"/>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="القسم الفرعي"
+                android:spinnerMode="dialog"
+                android:gravity="center"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                tools:ignore="RtlHardcoded,MissingPrefix"
+                android:id="@+id/sub_sub_category_spinner"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                android:inputType="text"
+                android:textAlignment="center"/>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="المدينة"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                tools:ignore="RtlHardcoded,MissingPrefix"
+                android:spinnerMode="dialog"
+                android:gravity="center"
+                android:id="@+id/city_spinner"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="10dp"
+                android:inputType="text"
+                android:textAlignment="center"/>
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="عنوان الاعلان (حد اقصي 30 حرف)"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="25dp"
+                android:inputType="text"
+                android:textSize="12sp"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                tools:ignore="RtlHardcoded,MissingPrefix"
+                android:maxLength="30"
+                android:id="@+id/title"
+                android:textAlignment="center"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:hint="اكتب نص الاعلان هنا"
+                android:textColor="@android:color/black"
+                android:background="@drawable/bg_edit_text"
+                android:layout_marginTop="25dp"
+                android:padding="10dp"
+                android:textSize="12sp"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                tools:ignore="RtlHardcoded,MissingPrefix"
+                android:inputType="textMultiLine"
+                android:id="@+id/body"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:id="@+id/add_pic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="اضافة صور :"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="11sp"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                tools:ignore="RtlHardcoded,MissingPrefix"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginRight="60dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/images_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content">
+
+            </LinearLayout>
+
+
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/add_photo"
+                android:contentDescription="@string/content_description"
+                android:src="@drawable/im_image"
+                android:layout_gravity="center"/>
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:hint="وسيلة الاتصال"
+                android:id="@+id/mobile"
+                android:textSize="12sp"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                tools:ignore="RtlHardcoded,MissingPrefix"
+                android:drawableRight="@drawable/ic_phone"
+                android:textColor="#45BBD9"
+                android:textAlignment="center"/>
+
+            <Button
+                android:layout_width="250dp"
+                android:layout_height="44dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:textSize="11sp"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                tools:ignore="RtlHardcoded,MissingPrefix"
+                android:id="@+id/continue_button"
+                android:background="@drawable/bg_button_background"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="استمر"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>
