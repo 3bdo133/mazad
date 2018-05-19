@@ -32,5 +32,7 @@ public class Constants {
     public static final String FORGET_PASSWORD = "forget_password";
     public static final String CHANGE_PASSWORD = "change_password";
     public static final String BANK_ACCOUNT = "bank_account";
+    public static final String REMOVE_SEARCH = "delete_search";
+    public static final String GET_SEARCH = "get_search";
 
 }

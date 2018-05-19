@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/parent_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -214,7 +215,7 @@
                     fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
                     android:text="نشرت شركة هوندا اليابانيه الصور الرسميه الاولي للجيل الخامس والجديد كليا من سيارتها الكروس اوفر CR-V.\nشاهد صور وتفاصيل الخبر : https://goo.gl/yQdEcX" />
 
-                <ImageView
+                <com.makeramen.roundedimageview.RoundedImageView
                     android:layout_width="match_parent"
                     android:layout_marginLeft="60dp"
                     android:layout_marginRight="60dp"
@@ -224,6 +225,9 @@
                     android:layout_marginTop="20dp"
                     android:adjustViewBounds="true"
                     android:id="@+id/image"
+                    app:riv_corner_radius="15dp"
+                    app:riv_border_width="2dp"
+                    app:riv_border_color="#9e9e9e"
                     android:src="@drawable/im_test" />
 
             </LinearLayout>

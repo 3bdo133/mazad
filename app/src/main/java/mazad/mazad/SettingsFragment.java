@@ -36,8 +36,8 @@ public class SettingsFragment extends Fragment {
 
     @BindView(R.id.remove_favorite)
     Button mRemoveFavorite;
-    //@BindView(R.id.remove_search)
-    //Button mRemoveSearch;
+    @BindView(R.id.remove_search)
+    Button mRemoveSearch;
     @BindView(R.id.share_app)
     Button mShareApp;
     @BindView(R.id.progress_indicator)
@@ -45,8 +45,11 @@ public class SettingsFragment extends Fragment {
 
     Connector mConnector;
     Map<String,String> mMap;
+    Map<String,String> mMapRemoveSearch;
 
     UserModel mUserModel = null;
+
+    Connector mConnectorRemoveSearch;
 
     private final String TAG = "SettingsFragment";
 
@@ -73,12 +76,12 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-        /*mRemoveSearch.setOnClickListener(new View.OnClickListener() {
+        mRemoveSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showAlertDialog();
+                showAlertDialogDeleteSearch();
             }
-        });*/
+        });
 
         mShareApp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +92,7 @@ public class SettingsFragment extends Fragment {
 
 
         mMap = new HashMap<>();
+        mMapRemoveSearch = new HashMap<>();
 
         mConnector = new Connector(getActivity(), new Connector.LoadCallback() {
             @Override
@@ -97,6 +101,32 @@ public class SettingsFragment extends Fragment {
                     mProgressBar.setVisibility(View.INVISIBLE);
                     if (getActivity() != null) {
                         Helper.showSnackBarMessage("تم حذف المفضلة بنجاح", ((AppCompatActivity) getActivity()));
+                    }
+                } else {
+                    if (getActivity() != null) {
+                        mProgressBar.setVisibility(View.INVISIBLE);
+                        Helper.showSnackBarMessage("خطأ من فضلك اعد المحاوله", ((AppCompatActivity) getActivity()));
+                    }
+                }
+            }
+        }, new Connector.ErrorCallback() {
+            @Override
+            public void onError(VolleyError error) {
+                if (getActivity() != null) {
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                    Helper.showSnackBarMessage("خطأ. من فضلك اعد المحاوله", ((AppCompatActivity) getActivity()));
+                }
+            }
+        });
+
+
+        mConnectorRemoveSearch = new Connector(getActivity(), new Connector.LoadCallback() {
+            @Override
+            public void onComplete(String tag, String response) {
+                if (Connector.checkStatus(response)){
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                    if (getActivity() != null) {
+                        Helper.showSnackBarMessage(Connector.getMessage(response), ((AppCompatActivity) getActivity()));
                     }
                 } else {
                     if (getActivity() != null) {
@@ -145,6 +175,45 @@ public class SettingsFragment extends Fragment {
                                 mConnector.setMap(mMap);
                                 mProgressBar.setVisibility(View.VISIBLE);
                                 mConnector.getRequest(TAG, Connector.createDeleteFavoriteUrl());
+                            } else {
+                                if (getActivity() != null) {
+                                    Helper.showSnackBarMessage("من فضلك قم بتسجيل الدخول", ((AppCompatActivity) getActivity()));
+                                }
+                            }
+                        }
+                    })
+                    .setNegativeButton("إلغاء", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // do nothing
+                        }
+                    })
+                    .create();
+
+            ViewCompat.setLayoutDirection(alertDialog.getWindow().getDecorView(), ViewCompat.LAYOUT_DIRECTION_RTL);
+
+            alertDialog.show();
+        }
+    }
+
+
+    private void showAlertDialogDeleteSearch() {
+        AlertDialog.Builder builder;
+        Context context = getContext();
+        if (context != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                builder = new AlertDialog.Builder(context, android.R.style.Theme_DeviceDefault_Light_Dialog_NoActionBar);
+            } else {
+                builder = new AlertDialog.Builder(context);
+            }
+            AlertDialog alertDialog = builder.setTitle("حذف سجل البحث")
+                    .setMessage("هل انت متأكد انك تريد حذف سجل البحث")
+                    .setPositiveButton("حذف", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (mUserModel != null) {
+                                mMapRemoveSearch.put("user_id", mUserModel.getId());
+                                mConnectorRemoveSearch.setMap(mMapRemoveSearch);
+                                mProgressBar.setVisibility(View.VISIBLE);
+                                mConnectorRemoveSearch.getRequest(TAG, Connector.createRemoveSearchUrl());
                             } else {
                                 if (getActivity() != null) {
                                     Helper.showSnackBarMessage("من فضلك قم بتسجيل الدخول", ((AppCompatActivity) getActivity()));

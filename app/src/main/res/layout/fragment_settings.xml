@@ -109,7 +109,7 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <!--<Button
+                <Button
                     android:layout_width="150dp"
                     android:layout_height="45dp"
                     android:layout_marginBottom="5dp"
@@ -120,10 +120,12 @@
                     android:text="محو سجل البحث"
                     android:textAlignment="center"
                     android:textAllCaps="false"
+                    fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
                     android:id="@+id/remove_search"
                     android:textColor="@android:color/white"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />-->
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:ignore="MissingPrefix" />
 
                 <Button
                     android:id="@+id/remove_favorite"

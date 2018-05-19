@@ -13,6 +13,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.JsonArray;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,6 +32,8 @@ import mazad.mazad.models.NewDetailModel;
 import mazad.mazad.models.NewModel;
 import mazad.mazad.models.PresentedItemModel;
 import mazad.mazad.models.ProductModel;
+import mazad.mazad.models.RecentSearchModel;
+import mazad.mazad.models.SearchModel;
 import mazad.mazad.models.SubCategoryModel;
 import mazad.mazad.models.UserModel;
 
@@ -308,6 +311,21 @@ public class Connector {
         return builder.toString();
     }
 
+    public static String createRemoveSearchUrl() {
+        Uri.Builder builder = Uri.parse(Constants.MAZAD_API_URL).buildUpon()
+                .appendPath(Constants.REMOVE_SEARCH);
+
+        return builder.toString();
+    }
+
+
+    public static String createGetSearchUrl() {
+        Uri.Builder builder = Uri.parse(Constants.MAZAD_API_URL).buildUpon()
+                .appendPath(Constants.GET_SEARCH);
+
+        return builder.toString();
+    }
+
 
     public static boolean checkStatus(String response) {
         boolean status = false;
@@ -320,6 +338,41 @@ public class Connector {
             }
         }
         return status;
+    }
+
+
+    public static boolean checkSearch(String response) {
+        JSONArray search = null;
+        boolean status= false;
+        if (Helper.isJSONValid(response)) {
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                search = jsonObject.getJSONArray("search");
+                status = search != null;
+            } catch (JSONException ex) {
+                ex.printStackTrace();
+                status = false;
+            }
+        }
+        return status;
+    }
+
+
+    public static ArrayList<RecentSearchModel> getRecentSearchJson(String response) {
+        ArrayList<RecentSearchModel> search = new ArrayList<>();
+        if (Helper.isJSONValid(response)) {
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                JSONArray searchArray = jsonObject.getJSONArray("search");
+                for (int i =0;i<searchArray.length();i++){
+                    String searchText = searchArray.getString(i);
+                    search.add(new RecentSearchModel(searchText));
+                }
+            } catch (JSONException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return search;
     }
 
     public static String getMessage(String response) {

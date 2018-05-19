@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.NavUtils;
@@ -32,6 +33,7 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 import com.stfalcon.frescoimageviewer.ImageViewer;
 
@@ -492,7 +494,10 @@ public class AdDetailsActivity extends AppCompatActivity {
                 for (int j = 0; j < mProductModel.getImages().size(); j++){
                     realImages.add(BASE_IMAGE_URL + mProductModel.getImages().get(j));
                 }
-                ImageView imageView = new ImageView(this);
+                RoundedImageView imageView = new RoundedImageView(this);
+                imageView.setCornerRadius((float) 15);
+                imageView.setBorderWidth((float) 5);
+                imageView.setBorderColor(Color.DKGRAY);
                 imageView.setLayoutParams(params);
                 final ImageViewer.Builder builder = new ImageViewer.Builder(AdDetailsActivity.this, realImages);
                 builder.setStartPosition(i);
