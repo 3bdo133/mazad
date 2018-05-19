@@ -536,6 +536,11 @@ public class AddAdvertisingActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     mImagesParent.removeView(v);
+                    try {
+                        mImagesStrings.remove(PathUtil.getPath(AddAdvertisingActivity.this,fullPhotoUri));
+                    } catch (URISyntaxException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
             imageView.setContentDescription(getString(R.string.content_description));
@@ -558,6 +563,9 @@ public class AddAdvertisingActivity extends AppCompatActivity {
         mCitySpinner.setSelection(0);
         mTermsCheckBox.setChecked(false);
         mImagesParent.removeAllViews();
+        mImagesStrings.clear();
+        mMap.clear();
+        mImageMap.clear();
     }
 
 
