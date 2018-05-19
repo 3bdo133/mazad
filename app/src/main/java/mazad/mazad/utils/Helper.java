@@ -125,6 +125,13 @@ public class Helper {
         editor.apply();
     }
 
+    public static void SaveNotificationToSharedPreferences(Context context, boolean reminder){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("reminder",reminder);
+        editor.apply();
+    }
+
     public static void SaveTokenToSharedPreferences(Context context,String token){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
@@ -142,6 +149,13 @@ public class Helper {
         String password = preferences.getString("password",null);
         return password;
 
+    }
+
+
+    public static boolean getNotificationSharedPreferences(Context context){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean reminder = preferences.getBoolean("reminder",true);
+        return reminder;
     }
 
     public static boolean PreferencesContainsUser(Context context){

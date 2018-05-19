@@ -15,7 +15,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ProgressBar;
+import android.widget.Switch;
 
 import com.android.volley.VolleyError;
 
@@ -42,6 +44,8 @@ public class SettingsFragment extends Fragment {
     Button mShareApp;
     @BindView(R.id.progress_indicator)
     ProgressBar mProgressBar;
+    @BindView(R.id.notification_reminder)
+    Switch mNotificationReminder;
 
     Connector mConnector;
     Map<String,String> mMap;
@@ -152,6 +156,15 @@ public class SettingsFragment extends Fragment {
         }
 
 
+        mNotificationReminder.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Helper.SaveNotificationToSharedPreferences(getActivity(),isChecked);
+            }
+        });
+
+
+        mNotificationReminder.setChecked(Helper.getNotificationSharedPreferences(getActivity()));
 
         return v;
     }

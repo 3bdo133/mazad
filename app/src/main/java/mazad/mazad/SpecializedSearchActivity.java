@@ -239,7 +239,9 @@ public class SpecializedSearchActivity extends AppCompatActivity {
                     mItems.setVisibility(View.VISIBLE);
                     mProgressBar.setVisibility(View.INVISIBLE);
                 } else {
-                    Helper.showSnackBarMessage("لا يوجد اتصال بالأنترنت",SpecializedSearchActivity.this);
+                    mPresentedItemModels.clear();
+                    adapter.notifyDataSetChanged();
+                    Helper.showSnackBarMessage("لا يوجد نتائج",SpecializedSearchActivity.this);
                     mItems.setVisibility(View.VISIBLE);
                     mProgressBar.setVisibility(View.INVISIBLE);
                 }

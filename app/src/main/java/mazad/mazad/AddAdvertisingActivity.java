@@ -427,9 +427,18 @@ public class AddAdvertisingActivity extends AppCompatActivity {
                         // result of the request.
                     }
                 } else {
+                    boolean visible = false;
                     mAdTitle = mAdTitleEditText.getText().toString();
                     mAdBody = mAdBodyEditText.getText().toString();
                     mAdMobile = mAdMobileEditText.getText().toString();
+                    if (mSubSubCategorySpinner.getVisibility() == View.VISIBLE) {
+                        if (mSubSubCategoryModelSelected.getId().equals("-1"))
+                            visible = false;
+                        else
+                            visible = true;
+                    } else {
+                        visible = true;
+                    }
                     if (!Helper.validateFields(mAdTitle) && !Helper.validateFields(mAdBody) && !Helper.validateMobile(mAdMobile) && mSubCategoryModelSelected.getId().equals("-1") && mCityModelSelected.getId().equals("-1") && !mTermsCheckBox.isChecked() && mImagesStrings.isEmpty()) {
                         Helper.showSnackBarMessage("ادخل البيانات المطلوبه", AddAdvertisingActivity.this);
                     } else if (!mTermsCheckBox.isChecked()) {
@@ -442,6 +451,8 @@ public class AddAdvertisingActivity extends AppCompatActivity {
                         Helper.showSnackBarMessage("من فضلك ادخل  وسيلة الاتصال", AddAdvertisingActivity.this);
                     } else if (mSubCategoryModelSelected.getId().equals("-1")) {
                         Helper.showSnackBarMessage("من فضلك اختار القسم الفرعي", AddAdvertisingActivity.this);
+                    } else if (!visible) {
+                        Helper.showSnackBarMessage("من فضلك اختار القسم الفرعي الثاني", AddAdvertisingActivity.this);
                     } else if (mCityModelSelected.getId().equals("-1")) {
                         Helper.showSnackBarMessage("من فضلك اختار المدينه", AddAdvertisingActivity.this);
                     } else if (mImagesStrings.isEmpty()) {
@@ -453,7 +464,9 @@ public class AddAdvertisingActivity extends AppCompatActivity {
                         mMap.put("body", mAdBody);
                         mMap.put("user_id", mUserModel.getId());
                         mMap.put("category_id", mDepartmentModel.getId());
-                        mMap.put("subsubcategory_id",mSubSubCategoryModelSelected.getId());
+                        if (mSubSubCategorySpinner.getVisibility() == View.VISIBLE) {
+                            mMap.put("subsubcategory_id", mSubSubCategoryModelSelected.getId());
+                        }
                         mMap.put("city_id", mCityModelSelected.getId());
                         mConnector.setMap(mMap);
                         for (int i = 0; i < mImagesStrings.size(); i++) {
@@ -556,9 +569,18 @@ public class AddAdvertisingActivity extends AppCompatActivity {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    boolean visible = false;
                     mAdTitle = mAdTitleEditText.getText().toString();
                     mAdBody = mAdBodyEditText.getText().toString();
                     mAdMobile = mAdMobileEditText.getText().toString();
+                    if (mSubSubCategorySpinner.getVisibility() == View.VISIBLE) {
+                        if (mSubSubCategoryModelSelected.getId().equals("-1"))
+                            visible = false;
+                        else
+                            visible = true;
+                    } else {
+                        visible = true;
+                    }
                     if (!Helper.validateFields(mAdTitle) && !Helper.validateFields(mAdBody) && !Helper.validateMobile(mAdMobile) && mSubCategoryModelSelected.getId().equals("-1") && mCityModelSelected.getId().equals("-1") && !mTermsCheckBox.isChecked() && mImagesStrings.isEmpty()) {
                         Helper.showSnackBarMessage("ادخل البيانات المطلوبه", AddAdvertisingActivity.this);
                     } else if (!mTermsCheckBox.isChecked()) {
@@ -571,16 +593,18 @@ public class AddAdvertisingActivity extends AppCompatActivity {
                         Helper.showSnackBarMessage("من فضلك ادخل  وسيلة الاتصال", AddAdvertisingActivity.this);
                     } else if (mSubCategoryModelSelected.getId().equals("-1")) {
                         Helper.showSnackBarMessage("من فضلك اختار القسم الفرعي", AddAdvertisingActivity.this);
-                    } else if (mSubSubCategoryModelSelected.getId().equals("-1") && mSubSubCategorySpinner.getVisibility() == View.VISIBLE){
+                    } else if (!visible) {
                         Helper.showSnackBarMessage("من فضلك اختار القسم الفرعي الثاني", AddAdvertisingActivity.this);
-                    }
-                    else if (mCityModelSelected.getId().equals("-1")) {
+                    } else if (mCityModelSelected.getId().equals("-1")) {
                         Helper.showSnackBarMessage("من فضلك اختار المدينه", AddAdvertisingActivity.this);
                     } else if (mImagesStrings.isEmpty()) {
                         Helper.showSnackBarMessage("من ادخل صورة واحده للاعلان علي الاقل", AddAdvertisingActivity.this);
                     } else {
                         mMap.put("name", mAdTitle);
                         mMap.put("subcategory_id", mSubCategoryModelSelected.getId());
+                        if (mSubSubCategorySpinner.getVisibility() == View.VISIBLE) {
+                            mMap.put("subsubcategory_id", mSubSubCategoryModelSelected.getId());
+                        }
                         mMap.put("mobile", mAdMobile);
                         mMap.put("body", mAdBody);
                         mMap.put("user_id", mUserModel.getId());
