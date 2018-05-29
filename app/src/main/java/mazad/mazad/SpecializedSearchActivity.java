@@ -29,6 +29,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import mazad.mazad.adapters.PresentedItemAdapter;
 import mazad.mazad.adapters.SpecializedSearchAdapter;
+import mazad.mazad.models.CityModel;
 import mazad.mazad.models.DepartmentModel;
 import mazad.mazad.models.PresentedItemModel;
 import mazad.mazad.models.SearchModel;
@@ -141,40 +142,56 @@ public class SpecializedSearchActivity extends AppCompatActivity {
         }, new SpecializedSearchAdapter.OnSearchClick() {
 
             @Override
-            public void setOnSearchClick(int position, int selectedCategory, int selectedChildren,boolean isChecked) {
-                if (selectedCategory != -1) {
-                    mSearchModels = adapter.getItems();
-                    Helper.writeToLog(mSearchModels.get(position).getDepartmentModel().getName());
-                    Helper.writeToLog(mSearchModels.get(position).getSubCategoryModels().get(selectedCategory).getName());
-                    if (!mSearchModels.get(position).getSubCategoryModels().get(selectedCategory).getChildren().isEmpty() && isChecked) {
-                        Helper.writeToLog(mSearchModels.get(position).getSubCategoryModels().get(selectedCategory).getChildren().get(selectedChildren).getName());
-                        Map<String,String> map = new HashMap<>();
-                        map.put("category_id[0]",mSearchModels.get(position).getDepartmentModel().getId());
-                        map.put("subcategory_id[0]",mSearchModels.get(position).getSubCategoryModels().get(selectedCategory).getId());
-                        map.put("subcategory_id[1]",mSearchModels.get(position).getSubCategoryModels().get(selectedCategory).getChildren().get(selectedChildren).getId());
-                        mConnectorGetProducts.setMap(map);
-                        Helper.writeToLog("true");
-                        back = true;
-                        mSearchItems.setVisibility(View.INVISIBLE);
-                        mProgressBar.setVisibility(View.VISIBLE);
-                        mConnectorGetProducts.getRequest(TAG, Connector.createGetProductsUrl());
-                    } else {
-                        Map<String,String> map = new HashMap<>();
-                        map.put("category_id[0]",mSearchModels.get(position).getDepartmentModel().getId());
-                        map.put("subcategory_id[0]",mSearchModels.get(position).getSubCategoryModels().get(selectedCategory).getId());
-                        //map.put("subcategory[1]",mSearchModels.get(position).getSubCategoryModels().get(selectedCategory).getChildren().get(selectedChildren).getId());
-                        mConnectorGetProducts.setMap(map);
-                        back = true;
-                        mSearchItems.setVisibility(View.INVISIBLE);
-                        mProgressBar.setVisibility(View.VISIBLE);
-                        mConnectorGetProducts.getRequest(TAG, Connector.createGetProductsUrl());
-                    }
+            public void setOnSearchClick(int position, int selectedCategory, int selectedChildren, boolean isChecked, String modelSelected, CityModel cityModel) {
+                if (cityModel.getName().equals("المدينة")) {
+                    Helper.showSnackBarMessage("من فضلك اختار المدينه", SpecializedSearchActivity.this);
 
-
-
+                } else if (modelSelected.equals("الموديل")){
+                    Helper.showSnackBarMessage("من فضلك اختار الموديل", SpecializedSearchActivity.this);
 
                 } else {
-                    Helper.showSnackBarMessage("من فضلك اختار القسم الفرعي",SpecializedSearchActivity.this);
+                    if (selectedCategory != -1) {
+                        mSearchModels = adapter.getItems();
+                        Helper.writeToLog(mSearchModels.get(position).getDepartmentModel().getName());
+                        Helper.writeToLog(mSearchModels.get(position).getSubCategoryModels().get(selectedCategory).getName());
+                        Helper.writeToLog(cityModel.getName());
+                        Helper.writeToLog(modelSelected);
+                        if (!mSearchModels.get(position).getSubCategoryModels().get(selectedCategory).getChildren().isEmpty() && isChecked) {
+                            Helper.writeToLog(mSearchModels.get(position).getSubCategoryModels().get(selectedCategory).getChildren().get(selectedChildren).getName());
+                            Map<String, String> map = new HashMap<>();
+                            map.put("category_id[0]", mSearchModels.get(position).getDepartmentModel().getId());
+                            map.put("subcategory_id[0]", mSearchModels.get(position).getSubCategoryModels().get(selectedCategory).getId());
+                            map.put("subcategory_id[1]", mSearchModels.get(position).getSubCategoryModels().get(selectedCategory).getChildren().get(selectedChildren).getId());
+                            map.put("city_id",cityModel.getId());
+                            if (!modelSelected.equals("-1")){
+                                map.put("model_id",modelSelected);
+                            }
+                            mConnectorGetProducts.setMap(map);
+                            Helper.writeToLog("true");
+                            back = true;
+                            mSearchItems.setVisibility(View.INVISIBLE);
+                            mProgressBar.setVisibility(View.VISIBLE);
+                            mConnectorGetProducts.getRequest(TAG, Connector.createGetProductsUrl());
+                        } else {
+                            Map<String, String> map = new HashMap<>();
+                            map.put("category_id[0]", mSearchModels.get(position).getDepartmentModel().getId());
+                            map.put("city_id",cityModel.getId());
+                            if (!modelSelected.equals("-1")){
+                                map.put("model_id",modelSelected);
+                            }
+                            map.put("subcategory_id[0]", mSearchModels.get(position).getSubCategoryModels().get(selectedCategory).getId());
+                            //map.put("subcategory[1]",mSearchModels.get(position).getSubCategoryModels().get(selectedCategory).getChildren().get(selectedChildren).getId());
+                            mConnectorGetProducts.setMap(map);
+                            back = true;
+                            mSearchItems.setVisibility(View.INVISIBLE);
+                            mProgressBar.setVisibility(View.VISIBLE);
+                            mConnectorGetProducts.getRequest(TAG, Connector.createGetProductsUrl());
+                        }
+
+
+                    } else {
+                        Helper.showSnackBarMessage("من فضلك اختار القسم الفرعي", SpecializedSearchActivity.this);
+                    }
                 }
             }
         });

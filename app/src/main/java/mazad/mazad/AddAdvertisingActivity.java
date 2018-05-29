@@ -82,6 +82,8 @@ public class AddAdvertisingActivity extends AppCompatActivity {
     Spinner mSubCategorySpinner;
     @BindView(R.id.sub_sub_category_spinner)
     Spinner mSubSubCategorySpinner;
+    @BindView(R.id.model_spinner)
+    Spinner mModelSpinner;
     @BindView(R.id.title)
     EditText mAdTitleEditText;
     @BindView(R.id.body)
@@ -122,6 +124,8 @@ public class AddAdvertisingActivity extends AppCompatActivity {
     SubCategoryModel mSubCategoryModelSelected = null;
     SubCategoryModel mSubSubCategoryModelSelected = null;
     CityModel mCityModelSelected = null;
+
+    String mModelSelected = "الموديل";
 
     static final int REQUEST_IMAGE_GET = 1;
     static final int MY_PERMISSIONS_REQUEST_READ_STORAGE = 2;
@@ -328,6 +332,21 @@ public class AddAdvertisingActivity extends AppCompatActivity {
         mSubCategoryConnector.setMap(map);
         mSubCategoryConnector.getRequest(TAG, Connector.createGetSubCategoriesUrl());
 
+        final ArrayAdapter<CharSequence> adapterModel =
+                new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item, new ArrayList<CharSequence>());
+
+        if (mDepartment.getText().toString().equals("سيارات")) {
+            adapterModel.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            adapterModel.add("الموديل");
+            for (int i = 1970; i <= 2018; i++) {
+                adapterModel.add(String.valueOf(i));
+            }
+            mModelSpinner.setAdapter(adapterModel);
+            mModelSpinner.setVisibility(View.VISIBLE);
+        } else {
+            mModelSpinner.setVisibility(View.GONE);
+        }
+
 
         mSubCategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -358,6 +377,19 @@ public class AddAdvertisingActivity extends AppCompatActivity {
             }
         });
 
+
+        mModelSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mModelSelected = (String) adapterModel.getItem(position);
+                Helper.writeToLog(mModelSelected);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         mSubSubCategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -428,6 +460,7 @@ public class AddAdvertisingActivity extends AppCompatActivity {
                     }
                 } else {
                     boolean visible = false;
+                    boolean visible2 = false;
                     mAdTitle = mAdTitleEditText.getText().toString();
                     mAdBody = mAdBodyEditText.getText().toString();
                     mAdMobile = mAdMobileEditText.getText().toString();
@@ -439,6 +472,16 @@ public class AddAdvertisingActivity extends AppCompatActivity {
                     } else {
                         visible = true;
                     }
+
+                    if (mModelSpinner.getVisibility() == View.VISIBLE) {
+                        if (mModelSelected.equals("الموديل"))
+                            visible2 = false;
+                        else
+                            visible2 = true;
+                    } else {
+                        visible2 = true;
+                    }
+
                     if (!Helper.validateFields(mAdTitle) && !Helper.validateFields(mAdBody) && !Helper.validateMobile(mAdMobile) && mSubCategoryModelSelected.getId().equals("-1") && mCityModelSelected.getId().equals("-1") && !mTermsCheckBox.isChecked() && mImagesStrings.isEmpty()) {
                         Helper.showSnackBarMessage("ادخل البيانات المطلوبه", AddAdvertisingActivity.this);
                     } else if (!mTermsCheckBox.isChecked()) {
@@ -453,7 +496,10 @@ public class AddAdvertisingActivity extends AppCompatActivity {
                         Helper.showSnackBarMessage("من فضلك اختار القسم الفرعي", AddAdvertisingActivity.this);
                     } else if (!visible) {
                         Helper.showSnackBarMessage("من فضلك اختار القسم الفرعي الثاني", AddAdvertisingActivity.this);
-                    } else if (mCityModelSelected.getId().equals("-1")) {
+                    } else if (!visible2) {
+                        Helper.showSnackBarMessage("من فضلك اختار الموديل", AddAdvertisingActivity.this);
+                    }
+                    else if (mCityModelSelected.getId().equals("-1")) {
                         Helper.showSnackBarMessage("من فضلك اختار المدينه", AddAdvertisingActivity.this);
                     } else if (mImagesStrings.isEmpty()) {
                         Helper.showSnackBarMessage("من ادخل صورة واحده للاعلان علي الاقل", AddAdvertisingActivity.this);
@@ -464,6 +510,7 @@ public class AddAdvertisingActivity extends AppCompatActivity {
                         mMap.put("body", mAdBody);
                         mMap.put("user_id", mUserModel.getId());
                         mMap.put("category_id", mDepartmentModel.getId());
+                        mMap.put("model_id",mModelSelected);
                         if (mSubSubCategorySpinner.getVisibility() == View.VISIBLE) {
                             mMap.put("subsubcategory_id", mSubSubCategoryModelSelected.getId());
                         }
@@ -537,7 +584,7 @@ public class AddAdvertisingActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     mImagesParent.removeView(v);
                     try {
-                        mImagesStrings.remove(PathUtil.getPath(AddAdvertisingActivity.this,fullPhotoUri));
+                        mImagesStrings.remove(PathUtil.getPath(AddAdvertisingActivity.this, fullPhotoUri));
                     } catch (URISyntaxException e) {
                         e.printStackTrace();
                     }
@@ -578,6 +625,7 @@ public class AddAdvertisingActivity extends AppCompatActivity {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     boolean visible = false;
+                    boolean visible2 = false;
                     mAdTitle = mAdTitleEditText.getText().toString();
                     mAdBody = mAdBodyEditText.getText().toString();
                     mAdMobile = mAdMobileEditText.getText().toString();
@@ -589,6 +637,16 @@ public class AddAdvertisingActivity extends AppCompatActivity {
                     } else {
                         visible = true;
                     }
+
+                    if (mModelSpinner.getVisibility() == View.VISIBLE) {
+                        if (mModelSelected.equals("الموديل"))
+                            visible2 = false;
+                        else
+                            visible2 = true;
+                    } else {
+                        visible2 = true;
+                    }
+
                     if (!Helper.validateFields(mAdTitle) && !Helper.validateFields(mAdBody) && !Helper.validateMobile(mAdMobile) && mSubCategoryModelSelected.getId().equals("-1") && mCityModelSelected.getId().equals("-1") && !mTermsCheckBox.isChecked() && mImagesStrings.isEmpty()) {
                         Helper.showSnackBarMessage("ادخل البيانات المطلوبه", AddAdvertisingActivity.this);
                     } else if (!mTermsCheckBox.isChecked()) {
@@ -603,6 +661,8 @@ public class AddAdvertisingActivity extends AppCompatActivity {
                         Helper.showSnackBarMessage("من فضلك اختار القسم الفرعي", AddAdvertisingActivity.this);
                     } else if (!visible) {
                         Helper.showSnackBarMessage("من فضلك اختار القسم الفرعي الثاني", AddAdvertisingActivity.this);
+                    } else if (!visible2){
+                        Helper.showSnackBarMessage("من فضلك اختار القسم الموديل", AddAdvertisingActivity.this);
                     } else if (mCityModelSelected.getId().equals("-1")) {
                         Helper.showSnackBarMessage("من فضلك اختار المدينه", AddAdvertisingActivity.this);
                     } else if (mImagesStrings.isEmpty()) {
@@ -618,6 +678,7 @@ public class AddAdvertisingActivity extends AppCompatActivity {
                         mMap.put("user_id", mUserModel.getId());
                         mMap.put("category_id", mDepartmentModel.getId());
                         mMap.put("city_id", mCityModelSelected.getId());
+                        mMap.put("model_id",mModelSelected);
                         mConnector.setMap(mMap);
                         for (int i = 0; i < mImagesStrings.size(); i++) {
                             mImageMap.put("image[" + i + "]", "data:image/jpeg;base64," + mImagesStrings.get(i));

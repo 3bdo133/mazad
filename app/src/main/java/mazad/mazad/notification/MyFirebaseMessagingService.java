@@ -17,6 +17,8 @@ import com.google.firebase.messaging.RemoteMessage;
 
 import org.json.JSONObject;
 
+import java.util.Map;
+
 import mazad.mazad.LoginActivity;
 import mazad.mazad.R;
 import mazad.mazad.SplashActivity;
@@ -29,11 +31,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void onMessageReceived(RemoteMessage remoteMessage) {
         if (Helper.getNotificationSharedPreferences(this)) {
 
-            String notificationMessage = remoteMessage.getNotification().getBody();
-
-            JSONObject jsonObject = new JSONObject(remoteMessage.getData());
-
-            Log.i("message", jsonObject.toString());
+            Map<String,String> notificationMessage = remoteMessage.getData();
 
             NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "0");
             mBuilder.setDefaults(NotificationCompat.DEFAULT_SOUND);
@@ -41,9 +39,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             //mBuilder.setLargeIcon(BitmapFactory.decodeResource(this.getResources(),
             //   R.drawable.im_logo));
             mBuilder.setStyle(new NotificationCompat.BigTextStyle()
-                    .bigText(notificationMessage));
-            mBuilder.setContentTitle(remoteMessage.getNotification().getTitle());
-            mBuilder.setContentText(notificationMessage);
+                    .bigText(notificationMessage.get("body")));
+            mBuilder.setContentTitle(notificationMessage.get("title"));
+            mBuilder.setContentText(notificationMessage.get("body"));
             mBuilder.setPriority(NotificationCompat.PRIORITY_HIGH);
             int color = ContextCompat.getColor(this, android.R.color.white);
             mBuilder.setColor(color);
@@ -58,7 +56,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             mBuilder.setContentIntent(resultPendingIntent);
             NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-            mNotificationManager.notify(0, mBuilder.build());
+            int random = (int)System.currentTimeMillis();
+            if (mNotificationManager != null) {
+                mNotificationManager.notify(random, mBuilder.build());
+            }
 
         }
     }

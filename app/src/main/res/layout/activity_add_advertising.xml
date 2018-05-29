@@ -142,6 +142,21 @@
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:hint="الموديل"
+                android:spinnerMode="dialog"
+                android:gravity="center"
+                fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+                tools:ignore="RtlHardcoded,MissingPrefix"
+                android:id="@+id/model_spinner"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                android:inputType="text"
+                android:textAlignment="center"/>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
                 android:hint="المدينة"
                 fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
                 tools:ignore="RtlHardcoded,MissingPrefix"
