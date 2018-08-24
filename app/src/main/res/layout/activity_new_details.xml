@@ -29,6 +29,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:maxLines="1"
+                android:maxLength="30"
                 fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
                 tools:ignore="RtlHardcoded,MissingPrefix"
                 tools:text="رائعة هوندا الجديدة crv 2019...."
@@ -66,7 +68,7 @@
             android:layout_margin="15dp"
             android:id="@+id/like"
             android:onClick="react"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:layout_width="20dp"
@@ -125,6 +127,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
+        android:id="@+id/scroll_parent"
         android:scrollbars="none"
         android:layout_above="@id/likes_parent"
         android:layout_below="@id/app_bar">
@@ -133,7 +136,7 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:id="@+id/parent_layout_new"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -148,12 +151,20 @@
                 fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
                 android:text="رائعة هوندا الجديدة crv 2019...." />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@android:color/darker_gray"/>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/bg_rectangle"
+                android:focusable="false"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -162,6 +173,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="20dp"
+                    android:visibility="gone"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -202,37 +214,60 @@
 
                 </LinearLayout>
 
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:focusable="false"
+                    android:contentDescription="@string/content_description"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"
+                    android:id="@+id/image"
+                    app:riv_corner_radius="5dp"
+                    app:riv_border_width="1dp"
+                    app:riv_border_color="#9e9e9e"
+                    android:src="@drawable/im_test" />
+
+
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:textColor="@android:color/white"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@android:color/black"
                     android:textSize="12sp"
                     android:id="@+id/body"
-                    android:textStyle="bold"
                     tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
                     fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
                     android:text="نشرت شركة هوندا اليابانيه الصور الرسميه الاولي للجيل الخامس والجديد كليا من سيارتها الكروس اوفر CR-V.\nشاهد صور وتفاصيل الخبر : https://goo.gl/yQdEcX" />
 
-                <com.makeramen.roundedimageview.RoundedImageView
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_marginLeft="60dp"
-                    android:layout_marginRight="60dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:contentDescription="@string/content_description"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
                     android:layout_marginTop="20dp"
-                    android:adjustViewBounds="true"
-                    android:id="@+id/image"
-                    app:riv_corner_radius="15dp"
-                    app:riv_border_width="2dp"
-                    app:riv_border_color="#9e9e9e"
-                    android:src="@drawable/im_test" />
+                    android:orientation="vertical"
+                    android:id="@+id/images_parent"
+                    android:layout_height="wrap_content">
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
-
+            <WebView
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:id="@+id/webView"
+                android:focusable="false"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
 
     </ScrollView>

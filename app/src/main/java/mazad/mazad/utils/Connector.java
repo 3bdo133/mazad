@@ -456,7 +456,8 @@ public class Connector {
                     String user = product.getString("user");
                     String image = product.getString("image");
                     String location = product.getString("city");
-                    list.add(new PresentedItemModel(name, date, id, categoryId, category, userId, user, image, location));
+                    int star = product.getInt("star");
+                    list.add(new PresentedItemModel(name, date, id, categoryId, category, userId, user, image, location,star));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -670,6 +671,7 @@ public class Connector {
 
     public static NewDetailModel getNewJson(String response) {
         NewDetailModel newDetailModel = null;
+        ArrayList<String> images = new ArrayList<>();
         if (Helper.isJSONValid(response)) {
             try {
                 JSONObject jsonObject = new JSONObject(response);
@@ -677,14 +679,19 @@ public class Connector {
                 String id = product.getString("id");
                 String name = product.getString("name");
                 String body = product.getString("body");
-                String image = product.getString("image");
+                JSONArray imagesJson = product.getJSONArray("images");
+                for (int i=0;i<imagesJson.length();i++){
+                    images.add(imagesJson.getString(i));
+                }
                 String categoryId = product.getString("category_id");
                 String created = product.getString("created");
                 String status = product.getString("status");
                 String like = String.valueOf(jsonObject.getInt("like"));
                 String disLike = String.valueOf(jsonObject.getInt("dislike"));
                 String category = product.getString("category");
-                newDetailModel = new NewDetailModel(id, name, body, image, categoryId, created, status, category,like,disLike);
+                String mainImage = product.getString("main_image");
+                String video = product.getString("video");
+                newDetailModel = new NewDetailModel(id, name, body, images, categoryId, created, status, category,like,disLike,mainImage,video);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

@@ -1,9 +1,11 @@
 package mazad.mazad;
 
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -46,6 +48,8 @@ public class SettingsFragment extends Fragment {
     ProgressBar mProgressBar;
     @BindView(R.id.notification_reminder)
     Switch mNotificationReminder;
+    @BindView(R.id.rate_us)
+    Button mRateUsButton;
 
     Connector mConnector;
     Map<String,String> mMap;
@@ -90,7 +94,26 @@ public class SettingsFragment extends Fragment {
         mShareApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareText("تطبيق مزاد يسمح لك باضافة اعلانات وبيعها... والتجول في اعلانات باقي المستخدمين والتواصل معهم");
+                shareText("تطبيق مزاد يسمح لك باضافة اعلانات وبيعها... والتجول في اعلانات باقي المستخدمين والتواصل معهم" + "\n" + "http://play.google.com/store/apps/details?id=" + getContext().getPackageName());
+            }
+        });
+
+        mRateUsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("market://details?id=" + getContext().getPackageName());
+                Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+                // To count with Play market backstack, After pressing back button,
+                // to taken back to our application, we need to add following flags to intent.
+                goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                        Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
+                        Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                try {
+                    startActivity(goToMarket);
+                } catch (ActivityNotFoundException e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("http://play.google.com/store/apps/details?id=" + getContext().getPackageName())));
+                }
             }
         });
 

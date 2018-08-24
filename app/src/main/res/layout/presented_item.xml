@@ -27,16 +27,34 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_toRightOf="@id/location"
-        android:drawablePadding="5dp"
         android:drawableRight="@drawable/ic_person"
-        android:gravity="right"
-        android:padding="10dp"
+        android:gravity="center"
+        android:layout_below="@id/product_name"
+        android:padding="5dp"
         android:textColor="#45BBD9"
-        android:textSize="11sp"
+        android:textSize="9sp"
         android:textStyle="bold"
         tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
         tools:text="عبدالله654548" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="فرصة ذهبية"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/location"
+        android:textSize="9sp"
+        android:gravity="center"
+        fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
+        android:textColor="#FFD40B"
+        android:layout_below="@id/product_name"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:visibility="visible"
+        android:id="@+id/star"
+        android:layout_toLeftOf="@id/person_name"
+        android:layout_height="wrap_content"
+        tools:ignore="HardcodedText,MissingPrefix,RtlHardcoded,SmallSp" />
 
 
     <com.makeramen.roundedimageview.RoundedImageView
@@ -80,12 +98,11 @@
         android:layout_alignParentBottom="true"
         android:layout_below="@id/product_name"
         android:layout_toRightOf="@id/product_image"
-        android:drawablePadding="5dp"
         android:drawableRight="@drawable/ic_location"
-        android:gravity="left"
-        android:padding="10dp"
+        android:gravity="center"
+        android:padding="5dp"
         android:textColor="#45BBD9"
-        android:textSize="11sp"
+        android:textSize="9sp"
         android:textStyle="bold"
         tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
         tools:text="جده" />

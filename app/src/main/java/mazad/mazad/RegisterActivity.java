@@ -177,6 +177,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (Connector.checkStatus(response)){
                     clearTextView();
                     Helper.SaveToSharedPreferences(RegisterActivity.this,Connector.registerAndLoginJson(response));
+                    Helper.SavePasswordToSharedPreferences(RegisterActivity.this,mPassword);
                     startActivity(new Intent(RegisterActivity.this,HomeActivity.class).putExtra("user",Connector.registerAndLoginJson(response)).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                 } else {
                     Helper.showSnackBarMessage("البريد الالكتروني او رقم الجوال موجود مسبقا",RegisterActivity.this);

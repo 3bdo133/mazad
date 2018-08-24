@@ -30,10 +30,10 @@
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:contentDescription="@string/content_description"
-                    android:src="@drawable/ic_user_registered"/>
+                    android:src="@drawable/user_header_icon"/>
 
                 <TextView
                     android:id="@+id/receiver_name"
@@ -67,7 +67,7 @@
                 android:adjustViewBounds="true"
                 android:layout_gravity="center"
                 android:contentDescription="@string/content_description"
-                android:src="@drawable/ic_24" />
+                android:src="@drawable/news" />
 
             <TextView
                 android:id="@+id/toolbar_title"
@@ -98,7 +98,7 @@
                     android:paddingLeft="10dp"
                     android:adjustViewBounds="true"
                     android:paddingRight="10dp"
-                    android:src="@drawable/ic_new_user" />
+                    android:src="@drawable/user_header_icon" />
 
                 <TextView
                     android:layout_width="wrap_content"

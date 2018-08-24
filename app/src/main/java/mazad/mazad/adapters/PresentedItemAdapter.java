@@ -60,6 +60,12 @@ public class PresentedItemAdapter extends RecyclerView.Adapter<PresentedItemAdap
         } else {
             holder.favorite.setVisibility(View.INVISIBLE);
         }
+
+        if (items.get(position).isStar() == 1){
+            holder.star.setVisibility(View.VISIBLE);
+        } else {
+            holder.star.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -79,6 +85,8 @@ public class PresentedItemAdapter extends RecyclerView.Adapter<PresentedItemAdap
         TextView location;
         @BindView(R.id.favorite)
         ImageView favorite;
+        @BindView(R.id.star)
+        TextView star;
 
         public PresentedItemHolder(View itemView) {
             super(itemView);

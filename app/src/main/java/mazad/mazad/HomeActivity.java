@@ -153,7 +153,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         if (savedInstanceState != null && savedInstanceState.containsKey("user")) {
             login = true;
             mUserModel = (UserModel) savedInstanceState.getSerializable("user");
-            mLoginButton.setImageResource(R.drawable.ic_user_registered);
+            mLoginButton.setImageResource(R.drawable.ic_person);
             mUserName.setText(mUserModel.getName());
             mUserName.setVisibility(View.VISIBLE);
             menu.findItem(R.id.nav_logout).setVisible(true);
@@ -165,7 +165,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         if (mIntent.hasExtra("user")) {
             login = true;
             mUserModel = (UserModel) mIntent.getSerializableExtra("user");
-            mLoginButton.setImageResource(R.drawable.ic_user_registered);
+            mLoginButton.setImageResource(R.drawable.ic_person);
             mUserName.setText(mUserModel.getName());
             mUserName.setVisibility(View.VISIBLE);
             menu.findItem(R.id.nav_logout).setVisible(true);
@@ -234,6 +234,23 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 home = false;
                 mToolbar.setVisibility(View.GONE);
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_main, new SearchFragment()).commit();
+            }
+        }
+
+        if (getIntent().hasExtra("goToChat")){
+            if (mUserModel == null) {
+                startActivity(new Intent(HomeActivity.this, LoginRegisterActivity.class));
+            } else {
+                home = false;
+                mToolbar.setVisibility(View.VISIBLE);
+                mToggle.setDrawerIndicatorEnabled(false);
+                mNewsButton.setVisibility(View.GONE);
+                mReceiveName.setVisibility(View.GONE);
+                mBackButton.setVisibility(View.GONE);
+                mToolbarTitle.setVisibility(View.VISIBLE);
+                mRegistrationParent.setVisibility(View.GONE);
+                mBottomNavigationView.setSelectedItemId(R.id.nav_message);
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_main, new ChatFragment()).commit();
             }
         }
 
@@ -339,7 +356,32 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         if (mDrawer.isDrawerOpen(GravityCompat.START)) {
             mDrawer.closeDrawer(GravityCompat.START);
         } else if (home) {
-            showAlertDialog();
+            show_alert_dialoug(this,
+                    "هل تريد الخروج من التطبيق ؟",
+                    "",
+                    true,
+                    "حسنا",
+                    "الرجوع",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(Intent.ACTION_MAIN);
+                            intent.addCategory(Intent.CATEGORY_HOME);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                            finishAffinity();
+                            System.exit(0);
+                        }
+                    },
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
         } else if (mReceiveName.getVisibility() == View.VISIBLE) {
             home = false;
             mToggle.setDrawerIndicatorEnabled(false);
@@ -473,7 +515,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     .create();
             if (alertDialog.getWindow() != null) {
                 ViewCompat.setLayoutDirection(alertDialog.getWindow().getDecorView(), ViewCompat.LAYOUT_DIRECTION_RTL);
-                alertDialog.getWindow().setLayout(600,400);
             }
             alertDialog.show();
     }
@@ -492,6 +533,24 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         } catch (Exception e) {
             //Log it, but ins't supposed to be here.
         }
+    }
+
+
+    public static void show_alert_dialoug(Context context, String body, String title, boolean cancelable, String positive_text, String negative_text, DialogInterface.OnClickListener yesListener, DialogInterface.OnClickListener NoListener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                .setCancelable(cancelable).setMessage(body);
+        if (!title.isEmpty()) {
+            builder.setTitle(title);
+        }
+        if (!positive_text.isEmpty()) {
+            builder.setPositiveButton(positive_text, yesListener);
+        }
+        if (!negative_text.isEmpty()) {
+            builder.setNegativeButton(negative_text, NoListener);
+        }
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 

@@ -54,6 +54,7 @@
                 android:background="@drawable/bg_button"
                 android:drawableRight="@drawable/ic_star"
                 android:elevation="5dp"
+                android:id="@+id/rate_us"
                 tools:ignore="HardcodedText,RtlHardcoded,MissingPrefix"
                 fontPath="fonts/ArbFONTS-DroidArabicKufi.ttf"
                 android:foreground="?attr/selectableItemBackgroundBorderless"

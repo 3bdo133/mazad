@@ -1,6 +1,7 @@
 package mazad.mazad;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewCompat;
@@ -8,16 +9,29 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.android.volley.VolleyError;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 import com.stfalcon.frescoimageviewer.ImageViewer;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -57,6 +71,10 @@ public class NewDetailsActivity extends AppCompatActivity {
     TextView mLikeTextView;
     @BindView(R.id.dislike)
     TextView mDisLikeTextView;
+    @BindView(R.id.images_parent)
+    LinearLayout mImagesParent;
+    @BindView(R.id.scroll_parent)
+    ScrollView mScrollView;
 
     Connector mConnector;
     Connector mConnectorAddLike;
@@ -70,6 +88,10 @@ public class NewDetailsActivity extends AppCompatActivity {
 
     UserModel mUserModel;
 
+    WebView mWebView;
+
+    private boolean mIsPaused = false;
+
     private final String TAG = "NewDetailsActivity";
 
     @Override
@@ -77,6 +99,7 @@ public class NewDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_details);
         ButterKnife.bind(this);
+        mWebView = findViewById(R.id.webView);
         Fresco.initialize(this);
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
@@ -173,6 +196,12 @@ public class NewDetailsActivity extends AppCompatActivity {
     }
 
     private void setData(){
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+        params.gravity = Gravity.CENTER;
+        params.setMargins(0,15,0,0);
         mBodyTextView.setText(mNewDetailModel.getBody());
         mTileTextView.setText(mNewDetailModel.getName());
         mTimeTextView.setText(mNewDetailModel.getCreated());
@@ -180,9 +209,34 @@ public class NewDetailsActivity extends AppCompatActivity {
         mLikeTextView.setText(mNewDetailModel.getLike());
         mDisLikeTextView.setText(mNewDetailModel.getDisLike());
         String BASE_IMAGE_URL = "http://Mazad-sa.net/mazad/new_img/";
-        Picasso.get().load(BASE_IMAGE_URL + mNewDetailModel.getImage()).into(mNewImage);
+        if (!mNewDetailModel.getMainImage().equals("")) {
+            Picasso.get().load(BASE_IMAGE_URL + mNewDetailModel.getMainImage()).into(mNewImage);
+        } else {
+            mNewImage.setVisibility(View.GONE);
+        }
         final ArrayList<String> realImages = new ArrayList<>();
-        realImages.add(BASE_IMAGE_URL + mNewDetailModel.getImage());
+        realImages.add(BASE_IMAGE_URL + mNewDetailModel.getMainImage());
+        for (int i =0;i<mNewDetailModel.getImages().size();i++){
+            RoundedImageView roundedImageView = new RoundedImageView(this);
+            roundedImageView.setCornerRadius(15);
+            roundedImageView.setLayoutParams(params);
+            roundedImageView.setBorderWidth((float) 10.0);
+            roundedImageView.setFocusable(false);
+            roundedImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            roundedImageView.setBorderColor(Color.parseColor("#9e9e9e"));
+
+            Picasso.get().load(BASE_IMAGE_URL + mNewDetailModel.getImages().get(i)).into(roundedImageView);
+            realImages.add(BASE_IMAGE_URL + mNewDetailModel.getImages().get(i));
+            final ImageViewer.Builder builder = new ImageViewer.Builder(NewDetailsActivity.this, realImages);
+            builder.setStartPosition(i+1);
+            roundedImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    builder.show();
+                }
+            });
+            mImagesParent.addView(roundedImageView);
+        }
         mNewImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -191,6 +245,16 @@ public class NewDetailsActivity extends AppCompatActivity {
                         .show();
             }
         });
+
+
+        Helper.writeToLog(mNewDetailModel.getVideo());
+        if (!mNewDetailModel.getVideo().trim().equals("")){
+            showVideo();
+        } else {
+            mWebView.setVisibility(View.GONE);
+        }
+
+        mScrollView.fullScroll(ScrollView.FOCUS_UP);
     }
 
 
@@ -232,6 +296,46 @@ public class NewDetailsActivity extends AppCompatActivity {
             }
         }
     }
+
+
+    public void showVideo(){
+
+        String media_url = "http://www.youtube.com/embed/"+mNewDetailModel.getVideo();
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels-900;
+        int width = displayMetrics.widthPixels-430;
+        mWebView.getSettings().setJavaScriptEnabled(true);
+        //String playVideo= "<html><body><iframe class=\"youtube-player\" type=\"text/html\" width=\"640\" height=\"360\" src=\"http://www.youtube.com/embed/"+mNewDetailModel.getVideo()+"\" frameborder=\"0\"></body></html>";
+        String playVideo= "<style>\n" +
+                ".video-container { \n" +
+                "position: relative; \n" +
+                "padding-bottom: 56.25%; \n" +
+                "padding-top: 35px; \n" +
+                "height: 0; \n" +
+                "overflow: hidden; \n" +
+                "}\n" +
+                ".video-container iframe { \n" +
+                "position: absolute; \n" +
+                "top:0; \n" +
+                "left: 0; \n" +
+                "width: 100%; \n" +
+                "height: 100%; \n" +
+                "}\n" +
+                "</style>\n" +
+                "<div class=\"video-container\">\n" +
+                "    <iframe src=\"http://www.youtube.com/embed/"+mNewDetailModel.getVideo()+"\" allowfullscreen=\"\" frameborder=\"0\">\n" +
+                "    </iframe>\n" +
+                "</div>";
+
+        mWebView.loadData(playVideo, "text/html", "utf-8");
+        mWebView.setFocusable(false);
+        mScrollView.fullScroll(ScrollView.FOCUS_UP);
+    }
+
+    //<iframe width="640" height="360" src="https://www.youtube.com/embed/kgXvebvaD6k" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 
 
 }

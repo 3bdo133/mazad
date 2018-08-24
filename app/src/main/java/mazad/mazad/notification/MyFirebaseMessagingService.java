@@ -19,9 +19,12 @@ import org.json.JSONObject;
 
 import java.util.Map;
 
+import mazad.mazad.HomeActivity;
 import mazad.mazad.LoginActivity;
+import mazad.mazad.NewsActivity;
 import mazad.mazad.R;
 import mazad.mazad.SplashActivity;
+import mazad.mazad.models.UserModel;
 import mazad.mazad.utils.Helper;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
@@ -47,6 +50,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             mBuilder.setColor(color);
 
             Intent resultIntent = new Intent(this, SplashActivity.class);
+
+            UserModel userModel = Helper.getUserSharedPreferences(this);
+
+            if (notificationMessage.containsKey("targetScreen")){
+                if (notificationMessage.get("targetScreen").equals("news")){
+                    resultIntent = new Intent(this, NewsActivity.class).putExtra("user",userModel);
+                } else {
+                    resultIntent = new Intent(this, HomeActivity.class).putExtra("goToChat",true);
+                }
+            }
 
             TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
             stackBuilder.addParentStack(LoginActivity.class);

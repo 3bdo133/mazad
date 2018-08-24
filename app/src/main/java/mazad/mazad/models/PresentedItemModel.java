@@ -16,6 +16,7 @@ public class PresentedItemModel implements Serializable {
     String mUser;
     String mImage;
     int favorite;
+    int star;
 
     public PresentedItemModel(String mName, int mImage, String mDescription, String mLocation, int favorite) {
         this.mName = mName;
@@ -48,6 +49,24 @@ public class PresentedItemModel implements Serializable {
         this.mUser = mUser;
         this.mImage = mImage;
         this.favorite = favorite;
+    }
+
+
+    public PresentedItemModel(String mName, String mDate, String mId, String mCategoryId, String mCategory, String mUserId, String mUser, String mImage,String mLocation,int star) {
+        this.mName = mName;
+        this.mDate = mDate;
+        this.mId = mId;
+        this.mCategoryId = mCategoryId;
+        this.mCategory = mCategory;
+        this.mUserId = mUserId;
+        this.mUser = mUser;
+        this.mImage = mImage;
+        this.mLocation = mLocation;
+        this.star = star;
+    }
+
+    public int isStar() {
+        return star;
     }
 
     public String getmImage() {

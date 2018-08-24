@@ -38,6 +38,7 @@ import com.android.volley.VolleyError;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.koushikdutta.ion.builder.Builders;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
@@ -504,13 +505,15 @@ public class AddAdvertisingActivity extends AppCompatActivity {
                     } else if (mImagesStrings.isEmpty()) {
                         Helper.showSnackBarMessage("من ادخل صورة واحده للاعلان علي الاقل", AddAdvertisingActivity.this);
                     } else {
+                        Helper.writeToLog(mModelSelected);
                         mMap.put("name", mAdTitle);
                         mMap.put("subcategory_id", mSubCategoryModelSelected.getId());
                         mMap.put("mobile", mAdMobile);
                         mMap.put("body", mAdBody);
                         mMap.put("user_id", mUserModel.getId());
                         mMap.put("category_id", mDepartmentModel.getId());
-                        mMap.put("model_id",mModelSelected);
+                        if (mModelSpinner.getVisibility() == View.VISIBLE)
+                            mMap.put("model_id",mModelSelected);
                         if (mSubSubCategorySpinner.getVisibility() == View.VISIBLE) {
                             mMap.put("subsubcategory_id", mSubSubCategoryModelSelected.getId());
                         }
@@ -591,7 +594,8 @@ public class AddAdvertisingActivity extends AppCompatActivity {
                 }
             });
             imageView.setContentDescription(getString(R.string.content_description));
-            imageView.setImageURI(fullPhotoUri);
+            //imageView.setImageURI(fullPhotoUri);
+            Picasso.get().load(fullPhotoUri).resize(600,600).centerCrop().into(imageView);
             mImagesParent.addView(imageView);
             try {
                 mImagesStrings.add(PathUtil.getPath(AddAdvertisingActivity.this, fullPhotoUri));
@@ -678,7 +682,8 @@ public class AddAdvertisingActivity extends AppCompatActivity {
                         mMap.put("user_id", mUserModel.getId());
                         mMap.put("category_id", mDepartmentModel.getId());
                         mMap.put("city_id", mCityModelSelected.getId());
-                        mMap.put("model_id",mModelSelected);
+                        if (mModelSpinner.getVisibility() == View.VISIBLE)
+                            mMap.put("model_id",mModelSelected);
                         mConnector.setMap(mMap);
                         for (int i = 0; i < mImagesStrings.size(); i++) {
                             mImageMap.put("image[" + i + "]", "data:image/jpeg;base64," + mImagesStrings.get(i));

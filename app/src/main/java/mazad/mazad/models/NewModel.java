@@ -13,6 +13,8 @@ public class NewModel implements Serializable {
     String categoryId;
     String category;
     String name;
+    String mainImage;
+    String video;
 
     public NewModel(String id, String image, String categoryId, String category, String name) {
         this.id = id;
@@ -20,6 +22,29 @@ public class NewModel implements Serializable {
         this.categoryId = categoryId;
         this.category = category;
         this.name = name;
+    }
+
+    public NewModel(String id, String time, String notification, String type, String description, String image, String categoryId, String category, String name, String mainImage, String video) {
+        this.id = id;
+        this.time = time;
+        this.notification = notification;
+        this.type = type;
+        this.description = description;
+        this.image = image;
+        this.categoryId = categoryId;
+        this.category = category;
+        this.name = name;
+        this.mainImage = mainImage;
+        this.video = video;
+    }
+
+
+    public String getMainImage() {
+        return mainImage;
+    }
+
+    public String getVideo() {
+        return video;
     }
 
     public String getTime() {
